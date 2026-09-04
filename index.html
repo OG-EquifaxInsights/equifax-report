@@ -1,28 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-  <base target="_top">
-
   <meta charset="UTF-8">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-  <title><?= config.pageTitle ?></title>
-
-  <!-- Open Sans -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
   >
+
+  <title>Equifax Report</title>
 
   <style>
 
     /* =========================================================
-       RESET
-       ========================================================= */
+       BASIC RESET
+    ========================================================= */
 
     * {
       box-sizing: border-box;
@@ -30,18 +22,12 @@
       padding: 0;
     }
 
-
-    html,
-    body {
-      width: 100%;
-      min-height: 100%;
+    html {
+      scroll-behavior: smooth;
     }
 
-
     body {
-
       font-family:
-        "Open Sans",
         Arial,
         Helvetica,
         sans-serif;
@@ -51,12 +37,16 @@
           135deg,
           #ffffff 0%,
           #ffffff 65%,
-          #fff7f8 100%
+          #fdf1f3 100%
         );
 
-      color: #172b4d;
+      color: #101c36;
 
       min-height: 100vh;
+
+      padding: 35px 20px 50px;
+
+      position: relative;
 
       overflow-x: hidden;
     }
@@ -64,31 +54,9 @@
 
     /* =========================================================
        BACKGROUND DECORATION
-       ========================================================= */
+    ========================================================= */
 
     body::before {
-
-      content: "";
-
-      position: fixed;
-
-      width: 520px;
-      height: 520px;
-
-      right: -280px;
-      top: -230px;
-
-      border-radius: 50%;
-
-      background:
-        rgba(166, 25, 46, 0.035);
-
-      pointer-events: none;
-    }
-
-
-    body::after {
-
       content: "";
 
       position: fixed;
@@ -96,51 +64,46 @@
       width: 420px;
       height: 420px;
 
-      left: -260px;
-      bottom: -230px;
+      right: -220px;
+      top: 100px;
+
+      background: #f8e8eb;
 
       border-radius: 50%;
 
-      background:
-        rgba(166, 25, 46, 0.025);
+      opacity: 0.65;
 
-      pointer-events: none;
+      z-index: -2;
     }
 
 
-    /* =========================================================
-       PAGE
-       ========================================================= */
+    body::after {
+      content: "";
 
-    .page {
+      position: fixed;
 
-      width: 100%;
+      width: 320px;
+      height: 320px;
 
-      min-height: 100vh;
+      left: -210px;
+      bottom: -160px;
 
-      display: flex;
+      background: #f9eaed;
 
-      justify-content: center;
+      border-radius: 50%;
 
-      align-items: flex-start;
+      opacity: 0.55;
 
-      padding:
-        55px 20px 60px;
-
-      position: relative;
-
-      z-index: 1;
+      z-index: -2;
     }
 
 
     /* =========================================================
        MAIN CONTAINER
-       ========================================================= */
+    ========================================================= */
 
-    .container {
-
+    .page {
       width: 100%;
-
       max-width: 760px;
 
       margin: 0 auto;
@@ -149,285 +112,186 @@
 
     /* =========================================================
        MAIN CARD
-       ========================================================= */
+    ========================================================= */
 
-    .card {
-
-      width: 100%;
-
+    .main-card {
       background: #ffffff;
 
-      border-radius: 16px;
+      border: 1px solid #e7c8ce;
 
-      border:
-        1px solid #ead4d8;
+      border-top: 5px solid #b51232;
 
-      border-top:
-        5px solid #A6192E;
+      border-radius: 14px;
 
       box-shadow:
-        0 12px 40px rgba(55, 20, 28, 0.10);
+        0 12px 35px rgba(60, 20, 30, 0.10);
 
       overflow: hidden;
     }
 
 
     /* =========================================================
-       BRAND AREA
-       ========================================================= */
+       HEADER
+    ========================================================= */
 
-    .brand {
-
-      padding:
-        35px 45px 0;
-
+    .header {
       text-align: center;
+
+      padding: 38px 45px 30px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #ffffff 0%,
+          #fffafb 100%
+        );
     }
 
 
+    /* LOGO */
+
     .logo {
+      display: block;
 
-      width: 185px;
-
+      width: 205px;
       max-width: 70%;
 
       height: auto;
 
-      display: block;
-
-      margin:
-        0 auto 25px;
-
-      object-fit: contain;
+      margin: 0 auto 22px;
     }
 
 
-    /* =========================================================
-       SINGLE MAROON DIVIDER
-       ========================================================= */
+    /* MAROON DIVIDER */
 
-    .brand-divider {
-
+    .divider {
       width: 100%;
+      max-width: 560px;
 
-      height: 2px;
+      height: 3px;
 
-      background: #A6192E;
+      background: #b51232;
 
-      margin:
-        0 auto;
+      margin: 0 auto 28px;
+
+      border-radius: 10px;
     }
 
 
-    /* =========================================================
-       INTRODUCTION
-       ========================================================= */
+    /* TITLE */
 
-    .intro {
+    .title {
+      font-size: 32px;
 
-      padding:
-        34px 45px 30px;
+      line-height: 1.2;
 
-      text-align: center;
+      font-weight: 700;
+
+      color: #101c36;
+
+      margin-bottom: 14px;
     }
 
 
-    .report-title {
-
-      color: #172b4d;
-
-      font-size: 31px;
-
-      line-height: 1.25;
-
-      font-weight: 800;
-
-      letter-spacing: -0.5px;
-
-      margin-bottom: 16px;
+    .title .maroon {
+      color: #b51232;
     }
 
 
-    .report-title .highlight {
-
-      color: #A6192E;
-    }
-
+    /* DESCRIPTION */
 
     .description {
+      max-width: 620px;
 
-      max-width: 650px;
+      margin: 0 auto;
 
-      margin:
-        0 auto;
-
-      color: #5d6b7d;
+      color: #536174;
 
       font-size: 15px;
 
-      line-height: 1.75;
-
-      font-weight: 400;
+      line-height: 1.7;
     }
 
 
     /* =========================================================
-       FORM AREA
-       ========================================================= */
+       FORM SECTION
+    ========================================================= */
 
-    .form-area {
+    .form-section {
+      padding: 35px 45px 40px;
 
-      margin:
-        0 45px 40px;
-
-      padding:
-        30px 32px 32px;
-
-      background:
-        #fffafa;
-
-      border:
-        1px solid #efdfe2;
-
-      border-radius: 12px;
+      border-top: 1px solid #ead5d9;
     }
 
 
-    .form-heading {
+    .form-title {
+      font-size: 24px;
 
-      color: #172b4d;
-
-      font-size: 22px;
-
-      line-height: 1.3;
-
-      font-weight: 800;
-
-      margin-bottom: 6px;
-    }
-
-
-    .form-heading-subtitle {
-
-      color: #778397;
-
-      font-size: 13px;
-
-      line-height: 1.5;
-
-      margin-bottom: 25px;
-    }
-
-
-    /* =========================================================
-       MESSAGE
-       ========================================================= */
-
-    .message {
-
-      display: none;
-
-      padding:
-        13px 15px;
-
-      margin-bottom: 20px;
-
-      border-radius: 8px;
-
-      font-size: 13px;
-
-      line-height: 1.5;
-
-      font-weight: 600;
-    }
-
-
-    .message.success {
-
-      display: block;
-
-      color: #166534;
-
-      background: #ecfdf3;
-
-      border:
-        1px solid #bbf7d0;
-    }
-
-
-    .message.error {
-
-      display: block;
-
-      color: #991b1b;
-
-      background: #fff1f2;
-
-      border:
-        1px solid #fecdd3;
-    }
-
-
-    /* =========================================================
-       FIELD
-       ========================================================= */
-
-    .field {
-
-      margin-bottom: 18px;
-    }
-
-
-    .field label {
-
-      display: block;
-
-      color: #253858;
-
-      font-size: 13px;
-
-      line-height: 1.4;
+      color: #101c36;
 
       font-weight: 700;
+
+      margin-bottom: 8px;
+    }
+
+
+    .form-subtitle {
+      color: #697586;
+
+      font-size: 14px;
+
+      margin-bottom: 28px;
+    }
+
+
+    /* =========================================================
+       FORM GROUP
+    ========================================================= */
+
+    .form-group {
+      margin-bottom: 19px;
+    }
+
+
+    label {
+      display: block;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      color: #263247;
 
       margin-bottom: 7px;
     }
 
 
     .required {
-
-      color: #A6192E;
+      color: #b51232;
     }
 
 
     /* =========================================================
-       INPUT
-       ========================================================= */
+       INPUTS
+    ========================================================= */
 
-    .input {
-
+    input,
+    select {
       width: 100%;
 
-      height: 50px;
+      height: 48px;
 
-      padding:
-        0 15px;
+      border: 1px solid #d7dce2;
 
-      border:
-        1px solid #d4dbe3;
-
-      border-radius: 7px;
+      border-radius: 6px;
 
       background: #ffffff;
 
-      color: #172b4d;
-
-      font-family:
-        "Open Sans",
-        Arial,
-        sans-serif;
+      padding: 0 14px;
 
       font-size: 14px;
+
+      color: #202938;
 
       outline: none;
 
@@ -438,1436 +302,954 @@
     }
 
 
-    .input::placeholder {
-
-      color: #a3acb8;
+    input::placeholder {
+      color: #a5acb6;
     }
 
 
-    .input:hover {
-
-      border-color: #b8c1cc;
-    }
-
-
-    .input:focus {
-
-      border-color: #A6192E;
-
-      background: #ffffff;
+    input:focus,
+    select:focus {
+      border-color: #b51232;
 
       box-shadow:
-        0 0 0 3px
-        rgba(166, 25, 46, 0.08);
+        0 0 0 3px rgba(181, 18, 50, 0.09);
+
+      background: #fff;
+    }
+
+
+    select {
+      cursor: pointer;
     }
 
 
     /* =========================================================
-       MOBILE NUMBER
-       ========================================================= */
+       TWO INPUTS ON DESKTOP
+    ========================================================= */
 
-    .mobile-wrap {
+    .form-row {
+      display: grid;
 
-      display: flex;
+      grid-template-columns: 1fr 1fr;
 
-      width: 100%;
-    }
-
-
-    .country-code {
-
-      width: 62px;
-
-      height: 50px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      flex-shrink: 0;
-
-      background: #f7f8fa;
-
-      color: #253858;
-
-      font-size: 13px;
-
-      font-weight: 700;
-
-      border:
-        1px solid #d4dbe3;
-
-      border-right: none;
-
-      border-radius:
-        7px 0 0 7px;
-    }
-
-
-    .mobile-input {
-
-      border-radius:
-        0 7px 7px 0;
+      gap: 18px;
     }
 
 
     /* =========================================================
        CONSENT
-       ========================================================= */
+    ========================================================= */
 
     .consent-box {
+      margin-top: 8px;
 
+      margin-bottom: 22px;
+
+      padding: 14px 15px;
+
+      background: #fff5f6;
+
+      border: 1px solid #f0d5da;
+
+      border-radius: 7px;
+    }
+
+
+    .consent-label {
       display: flex;
 
       align-items: flex-start;
 
       gap: 10px;
 
-      margin-top: 5px;
+      cursor: pointer;
 
-      margin-bottom: 22px;
+      margin: 0;
 
-      padding:
-        13px 14px;
+      font-size: 12px;
 
-      background:
-        #ffffff;
+      font-weight: 400;
 
-      border:
-        1px solid #eadcdf;
+      line-height: 1.55;
 
-      border-radius: 8px;
+      color: #586273;
     }
 
 
-    .consent-checkbox {
-
+    .consent-label input {
       width: 17px;
-
       height: 17px;
 
-      flex:
-        0 0 17px;
+      min-width: 17px;
 
       margin-top: 1px;
 
-      accent-color: #A6192E;
+      padding: 0;
 
-      cursor: pointer;
-    }
-
-
-    .consent-label {
-
-      color: #697586;
-
-      font-size: 11px;
-
-      line-height: 1.55;
+      accent-color: #b51232;
 
       cursor: pointer;
     }
 
 
     .consent-label strong {
-
-      color: #253858;
-
-      font-weight: 700;
+      color: #263247;
     }
 
 
     /* =========================================================
        SUBMIT BUTTON
-       ========================================================= */
+    ========================================================= */
 
-    .submit-btn {
-
+    .submit-button {
       width: 100%;
 
       height: 52px;
 
       border: none;
 
-      border-radius: 7px;
+      border-radius: 6px;
 
-      background: #A6192E;
+      background: #b51232;
 
       color: #ffffff;
 
-      font-family:
-        "Open Sans",
-        Arial,
-        sans-serif;
-
-      font-size: 14px;
+      font-size: 15px;
 
       font-weight: 700;
 
       cursor: pointer;
 
       box-shadow:
-        0 6px 15px
-        rgba(166, 25, 46, 0.20);
+        0 6px 15px rgba(181, 18, 50, 0.20);
 
       transition:
         background 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        opacity 0.2s ease;
+        transform 0.1s ease,
+        box-shadow 0.2s ease;
     }
 
 
-    .submit-btn:hover {
-
-      background: #8f1427;
-
-      transform:
-        translateY(-1px);
+    .submit-button:hover {
+      background: #980d29;
 
       box-shadow:
-        0 9px 20px
-        rgba(166, 25, 46, 0.25);
+        0 8px 18px rgba(181, 18, 50, 0.25);
     }
 
 
-    .submit-btn:active {
-
-      transform:
-        translateY(0);
+    .submit-button:active {
+      transform: translateY(1px);
     }
 
 
-    .submit-btn:disabled {
-
-      opacity: 0.65;
+    .submit-button:disabled {
+      background: #a9a9a9;
 
       cursor: not-allowed;
-
-      transform: none;
 
       box-shadow: none;
     }
 
 
-    .button-content {
-
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 8px;
-    }
-
-
     .button-arrow {
+      margin-left: 8px;
 
-      font-size: 18px;
-
-      line-height: 1;
+      font-size: 17px;
     }
 
 
     /* =========================================================
-       LOADER
-       ========================================================= */
+       SECURITY TEXT
+    ========================================================= */
 
-    .loader {
+    .security-text {
+      text-align: center;
 
+      color: #9299a3;
+
+      font-size: 11px;
+
+      margin-top: 13px;
+    }
+
+
+    /* =========================================================
+       SUCCESS MESSAGE
+    ========================================================= */
+
+    .success-message {
       display: none;
 
-      width: 16px;
+      margin-top: 20px;
 
-      height: 16px;
+      padding: 16px;
 
-      border:
-        2px solid
-        rgba(255,255,255,0.40);
+      border-radius: 7px;
 
-      border-top-color:
-        #ffffff;
+      background: #eef8f1;
 
-      border-radius: 50%;
+      border: 1px solid #c7e4ce;
 
-      animation:
-        spin 0.8s linear infinite;
-    }
-
-
-    @keyframes spin {
-
-      to {
-
-        transform:
-          rotate(360deg);
-      }
-    }
-
-
-    /* =========================================================
-       SECURITY NOTE
-       ========================================================= */
-
-    .security {
+      color: #216b35;
 
       text-align: center;
 
-      color: #8a95a3;
-
-      font-size: 10.5px;
+      font-size: 14px;
 
       line-height: 1.5;
+    }
 
-      margin-top: 14px;
+
+    .success-message.show {
+      display: block;
+    }
+
+
+    /* =========================================================
+       ERROR MESSAGE
+    ========================================================= */
+
+    .error-message {
+      display: none;
+
+      margin-top: 15px;
+
+      padding: 13px;
+
+      border-radius: 6px;
+
+      background: #fff2f3;
+
+      border: 1px solid #edc6cc;
+
+      color: #a31631;
+
+      font-size: 13px;
+
+      text-align: center;
+    }
+
+
+    .error-message.show {
+      display: block;
     }
 
 
     /* =========================================================
        FOOTER
-       ========================================================= */
+    ========================================================= */
 
     .footer {
-
       text-align: center;
 
-      padding:
-        22px 15px 0;
+      margin-top: 20px;
 
-      color: #929aa6;
+      color: #9299a3;
 
-      font-size: 10px;
-
-      line-height: 1.5;
-    }
-
-
-    /* =========================================================
-       TABLET
-       ========================================================= */
-
-    @media (max-width: 700px) {
-
-      .page {
-
-        padding:
-          30px 15px 45px;
-      }
-
-
-      .container {
-
-        max-width: 600px;
-      }
-
-
-      .brand {
-
-        padding:
-          30px 28px 0;
-      }
-
-
-      .logo {
-
-        width: 165px;
-
-        margin-bottom: 22px;
-      }
-
-
-      .intro {
-
-        padding:
-          27px 28px 25px;
-      }
-
-
-      .report-title {
-
-        font-size: 26px;
-      }
-
-
-      .description {
-
-        font-size: 14px;
-
-        line-height: 1.65;
-      }
-
-
-      .form-area {
-
-        margin:
-          0 25px 30px;
-
-        padding:
-          25px 22px 27px;
-      }
+      font-size: 11px;
     }
 
 
     /* =========================================================
        MOBILE
-       ========================================================= */
+    ========================================================= */
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
 
       body {
+        padding: 18px 12px 35px;
 
         background:
           linear-gradient(
             145deg,
             #ffffff 0%,
-            #ffffff 70%,
-            #fff8f9 100%
+            #ffffff 75%,
+            #fdf1f3 100%
           );
       }
 
 
       .page {
-
-        padding:
-          15px 10px 35px;
+        max-width: 100%;
       }
 
 
-      .card {
-
-        border-radius: 12px;
+      .main-card {
+        border-radius: 11px;
 
         border-top-width: 4px;
 
         box-shadow:
-          0 7px 24px
-          rgba(55, 20, 28, 0.08);
+          0 7px 22px rgba(60, 20, 30, 0.09);
       }
 
 
-      .brand {
-
-        padding:
-          24px 20px 0;
+      .header {
+        padding: 27px 20px 25px;
       }
 
 
       .logo {
+        width: 155px;
 
-        width: 145px;
-
-        max-width: 75%;
-
-        margin-bottom: 19px;
+        margin-bottom: 18px;
       }
 
 
-      .brand-divider {
-
+      .divider {
         height: 2px;
+
+        margin-bottom: 22px;
       }
 
 
-      .intro {
+      .title {
+        font-size: 23px;
 
-        padding:
-          24px 20px 22px;
-      }
-
-
-      .report-title {
-
-        font-size: 22px;
-
-        line-height: 1.3;
-
-        letter-spacing: -0.25px;
+        line-height: 1.28;
 
         margin-bottom: 12px;
       }
 
 
       .description {
+        font-size: 13px;
 
-        font-size: 12.5px;
-
-        line-height: 1.65;
+        line-height: 1.6;
       }
 
 
-      .form-area {
-
-        margin:
-          0 15px 25px;
-
-        padding:
-          22px 17px 22px;
-
-        border-radius: 9px;
+      .form-section {
+        padding: 26px 20px 28px;
       }
 
 
-      .form-heading {
-
-        font-size: 19px;
-
-        margin-bottom: 5px;
+      .form-title {
+        font-size: 21px;
       }
 
 
-      .form-heading-subtitle {
+      .form-subtitle {
+        font-size: 13px;
 
-        font-size: 11.5px;
-
-        margin-bottom: 20px;
+        margin-bottom: 23px;
       }
 
 
-      .field {
+      .form-row {
+        grid-template-columns: 1fr;
 
-        margin-bottom: 15px;
+        gap: 0;
       }
 
 
-      .field label {
-
-        font-size: 11.5px;
-
-        margin-bottom: 6px;
+      .form-group {
+        margin-bottom: 16px;
       }
 
 
-      .input {
-
+      input,
+      select {
         height: 46px;
 
-        padding:
-          0 12px;
-
-        font-size: 12.5px;
-
-        border-radius: 6px;
-      }
-
-
-      .country-code {
-
-        width: 54px;
-
-        height: 46px;
-
-        font-size: 12px;
-
-        border-radius:
-          6px 0 0 6px;
-      }
-
-
-      .mobile-input {
-
-        border-radius:
-          0 6px 6px 0;
+        font-size: 14px;
       }
 
 
       .consent-box {
+        padding: 12px;
 
-        gap: 8px;
-
-        padding:
-          10px 11px;
-
-        margin-bottom: 18px;
-      }
-
-
-      .consent-checkbox {
-
-        width: 15px;
-
-        height: 15px;
-
-        flex-basis: 15px;
+        margin-top: 4px;
       }
 
 
       .consent-label {
-
-        font-size: 9.5px;
+        font-size: 11px;
 
         line-height: 1.5;
       }
 
 
-      .submit-btn {
+      .submit-button {
+        height: 49px;
 
-        height: 48px;
-
-        font-size: 13px;
-
-        border-radius: 6px;
-      }
-
-
-      .security {
-
-        font-size: 9px;
-
-        margin-top: 11px;
+        font-size: 14px;
       }
 
 
       .footer {
+        margin-top: 15px;
 
-        padding-top: 17px;
-
-        font-size: 9px;
+        font-size: 10px;
       }
     }
 
 
     /* =========================================================
        VERY SMALL PHONES
-       ========================================================= */
+    ========================================================= */
 
-    @media (max-width: 350px) {
+    @media (max-width: 360px) {
 
-      .page {
-
-        padding-left: 7px;
-
-        padding-right: 7px;
+      body {
+        padding-left: 8px;
+        padding-right: 8px;
       }
 
 
-      .brand {
-
-        padding-left: 15px;
-
-        padding-right: 15px;
+      .header {
+        padding-left: 16px;
+        padding-right: 16px;
       }
 
 
-      .intro {
-
-        padding-left: 15px;
-
-        padding-right: 15px;
+      .form-section {
+        padding-left: 16px;
+        padding-right: 16px;
       }
 
 
-      .form-area {
-
-        margin-left: 10px;
-
-        margin-right: 10px;
-
-        padding-left: 13px;
-
-        padding-right: 13px;
-      }
-
-
-      .report-title {
-
-        font-size: 20px;
+      .title {
+        font-size: 21px;
       }
 
 
       .description {
-
-        font-size: 11.5px;
+        font-size: 12px;
       }
     }
 
   </style>
-
 </head>
 
 
 <body>
 
-  <div class="page">
+  <main class="page">
 
-    <div class="container">
+    <div class="main-card">
 
-      <div class="card">
+      <!-- =====================================================
+           HEADER
+      ====================================================== -->
+
+      <section class="header">
+
+        <!-- GitHub repository logo -->
+        <img
+          src="equifax-logo.png"
+          alt="Equifax"
+          class="logo"
+        >
+
+        <!-- Single maroon divider -->
+        <div class="divider"></div>
 
 
-        <!-- ===================================================
-             LOGO
-             =================================================== -->
+        <h1 class="title">
+          Aspirational India -
+          <span class="maroon">Retail Report</span>
+        </h1>
 
-        <div class="brand">
 
-          <? if (logoDataUri) { ?>
+        <p class="description">
+          Ready to underwrite the next 100 million?
+          Get the comprehensive data, risk strategies,
+          and actionable insights from Equifax India
+          to safely scale your retail lending footprint.
+        </p>
 
-            <img
-              src="<?!= logoDataUri ?>"
-              alt="Equifax"
-              class="logo"
+      </section>
+
+
+      <!-- =====================================================
+           FORM
+      ====================================================== -->
+
+      <section class="form-section">
+
+        <h2 class="form-title">
+          Request the Report
+        </h2>
+
+
+        <p class="form-subtitle">
+          Please enter your details to receive the report.
+        </p>
+
+
+        <form id="reportForm">
+
+
+          <!-- NAME -->
+
+          <div class="form-group">
+
+            <label for="name">
+              Name <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              autocomplete="name"
+              required
             >
 
-          <? } else { ?>
+          </div>
 
-            <div
-              style="
-                color:#A6192E;
-                font-size:42px;
-                font-weight:800;
-                font-style:italic;
-                letter-spacing:-2px;
-                margin-bottom:25px;
-              "
+
+          <!-- COMPANY -->
+
+          <div class="form-group">
+
+            <label for="company">
+              Company Name <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="company"
+              name="company"
+              placeholder="Enter company name"
+              autocomplete="organization"
+              required
             >
-              EQUIFAX<sup style="font-size:12px;">®</sup>
-            </div>
 
-          <? } ?>
+          </div>
 
-          <div class="brand-divider"></div>
 
-        </div>
+          <!-- DESIGNATION -->
 
+          <div class="form-group">
 
-        <!-- ===================================================
-             REPORT INTRODUCTION
-             =================================================== -->
+            <label for="designation">
+              Designation <span class="required">*</span>
+            </label>
 
-        <div class="intro">
+            <input
+              type="text"
+              id="designation"
+              name="designation"
+              placeholder="Enter your designation"
+              required
+            >
 
-          <h1 class="report-title">
+          </div>
 
-            Aspirational India -
 
-            <span class="highlight">
-              <?= config.formType ?> Report
-            </span>
+          <!-- EMAIL -->
 
-          </h1>
+          <div class="form-group">
 
+            <label for="email">
+              Email ID <span class="required">*</span>
+            </label>
 
-          <p class="description">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email address"
+              autocomplete="email"
+              required
+            >
 
-            <?= config.reportDescription ?>
+          </div>
 
-          </p>
 
-        </div>
+          <!-- MOBILE -->
 
+          <div class="form-group">
 
-        <!-- ===================================================
-             FORM AREA
-             =================================================== -->
+            <label for="mobile">
+              Mobile Number <span class="required">*</span>
+            </label>
 
-        <div class="form-area">
+            <input
+              type="tel"
+              id="mobile"
+              name="mobile"
+              placeholder="Enter your mobile number"
+              autocomplete="tel"
+              inputmode="numeric"
+              maxlength="10"
+              pattern="[0-9]{10}"
+              required
+            >
 
+          </div>
 
-          <h2 class="form-heading">
-            Request the Report
-          </h2>
 
+          <!-- REPORT TYPE -->
 
-          <p class="form-heading-subtitle">
-            <?= config.closingText ?>
-          </p>
+          <div class="form-group">
 
+            <label for="reportType">
+              Report <span class="required">*</span>
+            </label>
 
-          <!-- MESSAGE -->
+            <select
+              id="reportType"
+              name="reportType"
+              required
+            >
 
-          <div
-            id="message"
-            class="message"
-          ></div>
+              <option value="">
+                Select Report
+              </option>
 
+              <option value="Retail">
+                Retail Report
+              </option>
 
-          <!-- =================================================
-               FORM
-               ================================================= -->
+              <option value="Business">
+                Business Report
+              </option>
 
-          <form
-            id="reportForm"
-            onsubmit="handleSubmit(event)"
-            novalidate
-          >
+            </select>
 
+          </div>
 
-            <!-- NAME -->
 
-            <div class="field">
+          <!-- CONSENT -->
 
-              <label for="name">
+          <div class="consent-box">
 
-                Name
-
-                <span class="required">*</span>
-
-              </label>
-
-
-              <input
-                class="input"
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Enter your name"
-                autocomplete="name"
-                maxlength="100"
-                required
-              >
-
-            </div>
-
-
-            <!-- COMPANY NAME -->
-
-            <div class="field">
-
-              <label for="companyName">
-
-                Company Name
-
-                <span class="required">*</span>
-
-              </label>
-
-
-              <input
-                class="input"
-                type="text"
-                id="companyName"
-                name="companyName"
-                placeholder="Enter company name"
-                autocomplete="organization"
-                maxlength="150"
-                required
-              >
-
-            </div>
-
-
-            <!-- DESIGNATION -->
-
-            <div class="field">
-
-              <label for="designation">
-
-                Designation
-
-                <span class="required">*</span>
-
-              </label>
-
-
-              <input
-                class="input"
-                type="text"
-                id="designation"
-                name="designation"
-                placeholder="Enter your designation"
-                autocomplete="organization-title"
-                maxlength="100"
-                required
-              >
-
-            </div>
-
-
-            <!-- MOBILE -->
-
-            <div class="field">
-
-              <label for="mobile">
-
-                Mobile Number
-
-                <span class="required">*</span>
-
-              </label>
-
-
-              <div class="mobile-wrap">
-
-                <div class="country-code">
-                  +91
-                </div>
-
-
-                <input
-                  class="input mobile-input"
-                  type="tel"
-                  id="mobile"
-                  name="mobile"
-                  placeholder="Enter your mobile number"
-                  maxlength="10"
-                  inputmode="numeric"
-                  autocomplete="tel"
-                  required
-                  oninput="
-                    this.value =
-                    this.value
-                      .replace(/[^0-9]/g,'')
-                      .slice(0,10)
-                  "
-                >
-
-              </div>
-
-            </div>
-
-
-            <!-- EMAIL -->
-
-            <div class="field">
-
-              <label for="email">
-
-                Email ID
-
-                <span class="required">*</span>
-
-              </label>
-
-
-              <input
-                class="input"
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email ID"
-                autocomplete="email"
-                maxlength="150"
-                required
-              >
-
-            </div>
-
-
-            <!-- =================================================
-                 CONSENT
-                 ================================================= -->
-
-            <div class="consent-box">
+            <label class="consent-label">
 
               <input
                 type="checkbox"
                 id="consent"
                 name="consent"
-                class="consent-checkbox"
                 required
               >
 
-
-              <label
-                for="consent"
-                class="consent-label"
-              >
-
-                I hereby give my consent to the
-                <strong>Equifax team</strong>
-                to contact me regarding this report,
-                relevant products, services, and business
-                opportunities using the contact details
-                provided above.
-
-              </label>
-
-            </div>
-
-
-            <!-- =================================================
-                 SUBMIT
-                 ================================================= -->
-
-            <button
-              type="submit"
-              class="submit-btn"
-              id="submitBtn"
-            >
-
-              <span class="button-content">
-
-                <span
-                  class="loader"
-                  id="loader"
-                ></span>
-
-
-                <span id="buttonText">
-                  Get the Report
-                </span>
-
-
-                <span
-                  class="button-arrow"
-                  id="buttonArrow"
-                >
-                  →
-                </span>
-
+              <span>
+                I give my consent to the Equifax team to
+                contact me regarding this report and other
+                relevant Equifax products, services and
+                insights.
               </span>
 
-            </button>
-
-
-          </form>
-
-
-          <!-- SECURITY -->
-
-          <div class="security">
-
-            Your information is secure with Equifax.
+            </label>
 
           </div>
 
 
-        </div>
+          <!-- SUBMIT -->
+
+          <button
+            type="submit"
+            class="submit-button"
+            id="submitButton"
+          >
+
+            Get the Report
+
+            <span class="button-arrow">
+              →
+            </span>
+
+          </button>
 
 
-      </div>
+          <div class="security-text">
+            🔒 Your information is secure with Equifax.
+          </div>
 
 
-      <!-- =====================================================
-           FOOTER
-           ===================================================== -->
+          <!-- SUCCESS -->
 
-      <div class="footer">
+          <div
+            class="success-message"
+            id="successMessage"
+          >
+            <strong>Thank you!</strong><br>
+            Your request has been submitted successfully.
+            The report will be sent to your email address.
+          </div>
 
-        © Equifax. All rights reserved.
 
-      </div>
+          <!-- ERROR -->
+
+          <div
+            class="error-message"
+            id="errorMessage"
+          >
+            Something went wrong.
+            Please try again.
+          </div>
+
+
+        </form>
+
+      </section>
 
     </div>
 
-  </div>
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+      © Equifax. All rights reserved.
+    </div>
+
+  </main>
+
 
 
   <!-- =========================================================
        JAVASCRIPT
-       ========================================================= -->
+  ========================================================== -->
 
   <script>
 
+    /*
+     * ==========================================================
+     * GOOGLE APPS SCRIPT BACKEND
+     * ==========================================================
+     *
+     * This is your existing Google Apps Script Web App URL.
+     *
+     * GitHub = Frontend
+     * Apps Script = Backend
+     *
+     */
 
-    /* =========================================================
-       FORM SUBMISSION
-       ========================================================= */
+    const GOOGLE_SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbzphL91m0zmS--rONu7JrozEfCk6HMFSNf5pv-sUye1LX7v7T8gYq9uNaB2hGqHTnLA8A/exec";
 
-    function handleSubmit(event) {
+
+    /*
+     * ==========================================================
+     * FORM
+     * ==========================================================
+     */
+
+    const form =
+      document.getElementById("reportForm");
+
+    const submitButton =
+      document.getElementById("submitButton");
+
+    const successMessage =
+      document.getElementById("successMessage");
+
+    const errorMessage =
+      document.getElementById("errorMessage");
+
+
+    /*
+     * ==========================================================
+     * MOBILE NUMBER
+     * Allow numbers only
+     * ==========================================================
+     */
+
+    document
+      .getElementById("mobile")
+      .addEventListener("input", function () {
+
+        this.value =
+          this.value
+            .replace(/\D/g, "")
+            .slice(0, 10);
+
+      });
+
+
+    /*
+     * ==========================================================
+     * FORM SUBMISSION
+     * ==========================================================
+     */
+
+    form.addEventListener("submit", function (event) {
 
       event.preventDefault();
 
 
-      const form =
-        document.getElementById(
-          'reportForm'
-        );
+      /*
+       * Hide old messages
+       */
+
+      successMessage.classList.remove("show");
+
+      errorMessage.classList.remove("show");
 
 
-      const submitBtn =
-        document.getElementById(
-          'submitBtn'
-        );
-
-
-      const buttonText =
-        document.getElementById(
-          'buttonText'
-        );
-
-
-      const buttonArrow =
-        document.getElementById(
-          'buttonArrow'
-        );
-
-
-      const loader =
-        document.getElementById(
-          'loader'
-        );
-
-
-      const message =
-        document.getElementById(
-          'message'
-        );
-
-
-      /* =======================================================
-         GET VALUES
-         ======================================================= */
-
-      const name =
-        document
-          .getElementById('name')
-          .value
-          .trim();
-
-
-      const companyName =
-        document
-          .getElementById('companyName')
-          .value
-          .trim();
-
-
-      const designation =
-        document
-          .getElementById('designation')
-          .value
-          .trim();
-
+      /*
+       * Check mobile number
+       */
 
       const mobile =
-        document
-          .getElementById('mobile')
-          .value
-          .trim();
+        document.getElementById("mobile").value.trim();
 
 
-      const email =
-        document
-          .getElementById('email')
-          .value
-          .trim();
+      if (mobile.length !== 10) {
 
+        errorMessage.textContent =
+          "Please enter a valid 10-digit mobile number.";
+
+        errorMessage.classList.add("show");
+
+        return;
+      }
+
+
+      /*
+       * Check consent
+       */
 
       const consent =
-        document
-          .getElementById('consent')
-          .checked;
+        document.getElementById("consent").checked;
 
-
-      /* =======================================================
-         CLEAR MESSAGE
-         ======================================================= */
-
-      message.className =
-        'message';
-
-      message.textContent =
-        '';
-
-
-      /* =======================================================
-         NAME VALIDATION
-         ======================================================= */
-
-      if (!name) {
-
-        showMessage(
-          'Please enter your name.',
-          'error'
-        );
-
-        document
-          .getElementById('name')
-          .focus();
-
-        return;
-      }
-
-
-      /* =======================================================
-         COMPANY VALIDATION
-         ======================================================= */
-
-      if (!companyName) {
-
-        showMessage(
-          'Please enter your company name.',
-          'error'
-        );
-
-        document
-          .getElementById('companyName')
-          .focus();
-
-        return;
-      }
-
-
-      /* =======================================================
-         DESIGNATION VALIDATION
-         ======================================================= */
-
-      if (!designation) {
-
-        showMessage(
-          'Please enter your designation.',
-          'error'
-        );
-
-        document
-          .getElementById('designation')
-          .focus();
-
-        return;
-      }
-
-
-      /* =======================================================
-         MOBILE VALIDATION
-         ======================================================= */
-
-      if (
-        !/^[6-9][0-9]{9}$/.test(
-          mobile
-        )
-      ) {
-
-        showMessage(
-          'Please enter a valid 10-digit Indian mobile number.',
-          'error'
-        );
-
-        document
-          .getElementById('mobile')
-          .focus();
-
-        return;
-      }
-
-
-      /* =======================================================
-         EMAIL VALIDATION
-         ======================================================= */
-
-      const emailPattern =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-      if (
-        !emailPattern.test(email)
-      ) {
-
-        showMessage(
-          'Please enter a valid email address.',
-          'error'
-        );
-
-        document
-          .getElementById('email')
-          .focus();
-
-        return;
-      }
-
-
-      /* =======================================================
-         CONSENT VALIDATION
-         ======================================================= */
 
       if (!consent) {
 
-        showMessage(
-          'Please provide your consent to continue.',
-          'error'
-        );
+        errorMessage.textContent =
+          "Please provide your consent before submitting.";
+
+        errorMessage.classList.add("show");
 
         return;
       }
 
 
-      /* =======================================================
-         DISABLE BUTTON
-         ======================================================= */
+      /*
+       * Disable button
+       */
 
-      submitBtn.disabled =
-        true;
+      submitButton.disabled = true;
 
+      submitButton.innerHTML =
+        "Submitting...";
 
-      loader.style.display =
-        'inline-block';
 
+      /*
+       * Create form data
+       */
 
-      buttonText.textContent =
-        'Sending...';
+      const formData = new URLSearchParams();
 
 
-      buttonArrow.style.display =
-        'none';
+      formData.append(
+        "name",
+        document.getElementById("name").value.trim()
+      );
 
 
-      /* =======================================================
-         FORM DATA
-         ======================================================= */
+      formData.append(
+        "company",
+        document.getElementById("company").value.trim()
+      );
 
-      const formData = {
 
-        name:
-          name,
+      formData.append(
+        "designation",
+        document.getElementById("designation").value.trim()
+      );
 
-        companyName:
-          companyName,
 
-        designation:
-          designation,
+      formData.append(
+        "email",
+        document.getElementById("email").value.trim()
+      );
 
-        mobile:
-          mobile,
 
-        email:
-          email,
+      formData.append(
+        "mobile",
+        document.getElementById("mobile").value.trim()
+      );
 
-        consent:
-          consent
 
-      };
+      formData.append(
+        "reportType",
+        document.getElementById("reportType").value
+      );
 
 
-      /* =======================================================
-         SEND TO CODE.GS
-         ======================================================= */
+      formData.append(
+        "consent",
+        "Yes"
+      );
 
-      google.script.run
 
-        .withSuccessHandler(
-          function(response) {
+      /*
+       * ========================================================
+       * SEND TO GOOGLE APPS SCRIPT
+       * ========================================================
+       */
 
+      fetch(
+        GOOGLE_SCRIPT_URL,
+        {
+          method: "POST",
 
-            /* ================================================
-               RE-ENABLE BUTTON
-               ================================================ */
+          mode: "no-cors",
 
-            submitBtn.disabled =
-              false;
+          headers: {
+            "Content-Type":
+              "application/x-www-form-urlencoded;charset=UTF-8"
+          },
 
+          body: formData.toString()
+        }
+      )
+      .then(function () {
 
-            loader.style.display =
-              'none';
+        /*
+         * Since no-cors gives us an opaque response,
+         * we treat successful transmission as submitted.
+         */
 
+        form.reset();
 
-            buttonText.textContent =
-              'Get the Report';
 
+        submitButton.disabled = false;
 
-            buttonArrow.style.display =
-              'inline';
+        submitButton.innerHTML =
+          'Get the Report <span class="button-arrow">→</span>';
 
 
-            /* ================================================
-               RESPONSE
-               ================================================ */
+        successMessage.classList.add("show");
 
-            if (
-              response &&
-              response.success
-            ) {
 
-              showMessage(
-                response.message ||
-                'Thank you. Please check your email for the report.',
-                'success'
-              );
+        /*
+         * Scroll to success message
+         */
 
+        successMessage.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
 
-              /* ==============================================
-                 CLEAR FORM
-                 ============================================== */
+      })
+      .catch(function (error) {
 
-              form.reset();
+        console.error(error);
 
-            }
 
-            else {
+        submitButton.disabled = false;
 
-              showMessage(
-                response &&
-                response.message
-                  ? response.message
-                  : 'Unable to send the report. Please try again.',
-                'error'
-              );
+        submitButton.innerHTML =
+          'Get the Report <span class="button-arrow">→</span>';
 
-            }
 
-          }
-        )
+        errorMessage.textContent =
+          "Unable to submit your request. Please try again.";
 
-        .withFailureHandler(
-          function(error) {
+        errorMessage.classList.add("show");
 
-
-            /* ================================================
-               RE-ENABLE BUTTON
-               ================================================ */
-
-            submitBtn.disabled =
-              false;
-
-
-            loader.style.display =
-              'none';
-
-
-            buttonText.textContent =
-              'Get the Report';
-
-
-            buttonArrow.style.display =
-              'inline';
-
-
-            /* ================================================
-               USER-FRIENDLY ERROR
-               ================================================ */
-
-            showMessage(
-              'Unable to send the report. Please try again.',
-              'error'
-            );
-
-          }
-        )
-
-        .submitForm(
-          formData,
-          '<?= formType ?>'
-        );
-
-    }
-
-
-    /* =========================================================
-       SHOW MESSAGE
-       ========================================================= */
-
-    function showMessage(
-      text,
-      type
-    ) {
-
-      const message =
-        document.getElementById(
-          'message'
-        );
-
-
-      message.textContent =
-        text;
-
-
-      message.className =
-        'message ' +
-        type;
-
-
-      message.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest'
       });
 
-    }
-
+    });
 
   </script>
 
 </body>
-
 </html>
