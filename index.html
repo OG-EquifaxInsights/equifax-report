@@ -1,30 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
+  <base target="_top">
+
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title><?= config.pageTitle ?></title>
+
+  <!-- Open Sans -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
   >
 
-  <title>Equifax Report</title>
-
   <style>
+
+    /* =========================================================
+       RESET
+       ========================================================= */
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+
+    html,
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      width: 100%;
+      min-height: 100%;
+    }
+
+
+    body {
+
+      font-family:
+        "Open Sans",
+        Arial,
+        Helvetica,
+        sans-serif;
+
       background:
-        radial-gradient(
-          circle at 100% 0%,
-          rgba(176, 24, 54, 0.08),
-          transparent 32%
-        ),
         linear-gradient(
           135deg,
           #ffffff 0%,
@@ -32,785 +54,1820 @@
           #fff7f8 100%
         );
 
-      color: #17233c;
+      color: #172b4d;
+
       min-height: 100vh;
+
+      overflow-x: hidden;
     }
 
-    /* Main page container */
+
+    /* =========================================================
+       BACKGROUND DECORATION
+       ========================================================= */
+
+    body::before {
+
+      content: "";
+
+      position: fixed;
+
+      width: 520px;
+      height: 520px;
+
+      right: -280px;
+      top: -230px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(166, 25, 46, 0.035);
+
+      pointer-events: none;
+    }
+
+
+    body::after {
+
+      content: "";
+
+      position: fixed;
+
+      width: 420px;
+      height: 420px;
+
+      left: -260px;
+      bottom: -230px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(166, 25, 46, 0.025);
+
+      pointer-events: none;
+    }
+
+
+    /* =========================================================
+       PAGE
+       ========================================================= */
 
     .page {
+
       width: 100%;
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 35px 20px 50px;
+
+      min-height: 100vh;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: flex-start;
+
+      padding:
+        55px 20px 60px;
+
+      position: relative;
+
+      z-index: 1;
     }
 
-    /* Main card */
+
+    /* =========================================================
+       MAIN CONTAINER
+       ========================================================= */
+
+    .container {
+
+      width: 100%;
+
+      max-width: 760px;
+
+      margin: 0 auto;
+    }
+
+
+    /* =========================================================
+       MAIN CARD
+       ========================================================= */
 
     .card {
+
+      width: 100%;
+
       background: #ffffff;
-      border: 1px solid #ead3d8;
-      border-top: 6px solid #b51232;
-      border-radius: 14px;
+
+      border-radius: 16px;
+
+      border:
+        1px solid #ead4d8;
+
+      border-top:
+        5px solid #A6192E;
+
       box-shadow:
-        0 15px 45px rgba(37, 20, 27, 0.10),
-        0 3px 12px rgba(37, 20, 27, 0.05);
+        0 12px 40px rgba(55, 20, 28, 0.10);
 
       overflow: hidden;
     }
 
-    /* Header */
 
-    .header {
+    /* =========================================================
+       BRAND AREA
+       ========================================================= */
+
+    .brand {
+
+      padding:
+        35px 45px 0;
+
       text-align: center;
-      padding: 30px 30px 25px;
-      background:
-        linear-gradient(
-          180deg,
-          #ffffff 0%,
-          #fffafb 100%
-        );
     }
+
 
     .logo {
-      width: 190px;
+
+      width: 185px;
+
       max-width: 70%;
+
       height: auto;
+
       display: block;
-      margin: 0 auto 23px;
+
+      margin:
+        0 auto 25px;
+
+      object-fit: contain;
     }
 
-    .separator {
+
+    /* =========================================================
+       SINGLE MAROON DIVIDER
+       ========================================================= */
+
+    .brand-divider {
+
       width: 100%;
+
       height: 2px;
-      background: #b51232;
-      margin: 0 auto 27px;
+
+      background: #A6192E;
+
+      margin:
+        0 auto;
     }
 
-    .title {
-      font-size: 30px;
-      line-height: 1.2;
-      font-weight: 700;
-      color: #17233c;
-      margin-bottom: 14px;
+
+    /* =========================================================
+       INTRODUCTION
+       ========================================================= */
+
+    .intro {
+
+      padding:
+        34px 45px 30px;
+
+      text-align: center;
     }
 
-    .title span {
-      color: #b51232;
+
+    .report-title {
+
+      color: #172b4d;
+
+      font-size: 31px;
+
+      line-height: 1.25;
+
+      font-weight: 800;
+
+      letter-spacing: -0.5px;
+
+      margin-bottom: 16px;
     }
+
+
+    .report-title .highlight {
+
+      color: #A6192E;
+    }
+
 
     .description {
-      font-size: 15px;
-      line-height: 1.7;
-      color: #536174;
+
       max-width: 650px;
-      margin: 0 auto;
+
+      margin:
+        0 auto;
+
+      color: #5d6b7d;
+
+      font-size: 15px;
+
+      line-height: 1.75;
+
+      font-weight: 400;
     }
 
-    /* Form section */
 
-    .form-section {
-      padding: 32px 40px 38px;
-      border-top: 1px solid #f0dfe3;
+    /* =========================================================
+       FORM AREA
+       ========================================================= */
+
+    .form-area {
+
+      margin:
+        0 45px 40px;
+
+      padding:
+        30px 32px 32px;
+
+      background:
+        #fffafa;
+
+      border:
+        1px solid #efdfe2;
+
+      border-radius: 12px;
     }
 
-    .form-title {
-      font-size: 23px;
-      font-weight: 700;
-      color: #17233c;
-      margin-bottom: 24px;
+
+    .form-heading {
+
+      color: #172b4d;
+
+      font-size: 22px;
+
+      line-height: 1.3;
+
+      font-weight: 800;
+
+      margin-bottom: 6px;
     }
 
-    .form-title::after {
-      content: "";
+
+    .form-heading-subtitle {
+
+      color: #778397;
+
+      font-size: 13px;
+
+      line-height: 1.5;
+
+      margin-bottom: 25px;
+    }
+
+
+    /* =========================================================
+       MESSAGE
+       ========================================================= */
+
+    .message {
+
+      display: none;
+
+      padding:
+        13px 15px;
+
+      margin-bottom: 20px;
+
+      border-radius: 8px;
+
+      font-size: 13px;
+
+      line-height: 1.5;
+
+      font-weight: 600;
+    }
+
+
+    .message.success {
+
       display: block;
-      width: 62px;
-      height: 4px;
-      background: #b51232;
-      margin-top: 12px;
-      border-radius: 5px;
+
+      color: #166534;
+
+      background: #ecfdf3;
+
+      border:
+        1px solid #bbf7d0;
     }
+
+
+    .message.error {
+
+      display: block;
+
+      color: #991b1b;
+
+      background: #fff1f2;
+
+      border:
+        1px solid #fecdd3;
+    }
+
+
+    /* =========================================================
+       FIELD
+       ========================================================= */
 
     .field {
-      margin-bottom: 19px;
+
+      margin-bottom: 18px;
     }
 
-    label {
+
+    .field label {
+
       display: block;
-      font-size: 14px;
+
+      color: #253858;
+
+      font-size: 13px;
+
+      line-height: 1.4;
+
       font-weight: 700;
-      color: #273247;
+
       margin-bottom: 7px;
     }
 
+
     .required {
-      color: #b51232;
+
+      color: #A6192E;
     }
 
-    input {
+
+    /* =========================================================
+       INPUT
+       ========================================================= */
+
+    .input {
+
       width: 100%;
+
       height: 50px;
-      border: 1px solid #d6dbe1;
+
+      padding:
+        0 15px;
+
+      border:
+        1px solid #d4dbe3;
+
       border-radius: 7px;
+
       background: #ffffff;
-      padding: 0 15px;
+
+      color: #172b4d;
+
+      font-family:
+        "Open Sans",
+        Arial,
+        sans-serif;
+
       font-size: 14px;
-      color: #17233c;
+
       outline: none;
-      transition: all 0.2s ease;
+
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
     }
 
-    input::placeholder {
-      color: #9ca4ae;
+
+    .input::placeholder {
+
+      color: #a3acb8;
     }
 
-    input:focus {
-      border-color: #b51232;
-      box-shadow: 0 0 0 3px rgba(181, 18, 50, 0.08);
+
+    .input:hover {
+
+      border-color: #b8c1cc;
     }
 
-    /* Consent */
+
+    .input:focus {
+
+      border-color: #A6192E;
+
+      background: #ffffff;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(166, 25, 46, 0.08);
+    }
+
+
+    /* =========================================================
+       MOBILE NUMBER
+       ========================================================= */
+
+    .mobile-wrap {
+
+      display: flex;
+
+      width: 100%;
+    }
+
+
+    .country-code {
+
+      width: 62px;
+
+      height: 50px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      flex-shrink: 0;
+
+      background: #f7f8fa;
+
+      color: #253858;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      border:
+        1px solid #d4dbe3;
+
+      border-right: none;
+
+      border-radius:
+        7px 0 0 7px;
+    }
+
+
+    .mobile-input {
+
+      border-radius:
+        0 7px 7px 0;
+    }
+
+
+    /* =========================================================
+       CONSENT
+       ========================================================= */
 
     .consent-box {
+
       display: flex;
+
       align-items: flex-start;
+
       gap: 10px;
 
-      background: #fff7f8;
-      border: 1px solid #f0d7dc;
-      border-radius: 8px;
-
-      padding: 13px 14px;
       margin-top: 5px;
-      margin-bottom: 20px;
+
+      margin-bottom: 22px;
+
+      padding:
+        13px 14px;
+
+      background:
+        #ffffff;
+
+      border:
+        1px solid #eadcdf;
+
+      border-radius: 8px;
     }
 
-    .consent-box input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      min-width: 18px;
+
+    .consent-checkbox {
+
+      width: 17px;
+
+      height: 17px;
+
+      flex:
+        0 0 17px;
+
       margin-top: 1px;
-      accent-color: #b51232;
+
+      accent-color: #A6192E;
+
       cursor: pointer;
     }
 
-    .consent-text {
-      font-size: 12px;
-      line-height: 1.5;
-      color: #596273;
-      font-weight: 400;
+
+    .consent-label {
+
+      color: #697586;
+
+      font-size: 11px;
+
+      line-height: 1.55;
+
       cursor: pointer;
     }
 
-    /* Submit button */
+
+    .consent-label strong {
+
+      color: #253858;
+
+      font-weight: 700;
+    }
+
+
+    /* =========================================================
+       SUBMIT BUTTON
+       ========================================================= */
 
     .submit-btn {
+
       width: 100%;
-      height: 54px;
+
+      height: 52px;
 
       border: none;
+
       border-radius: 7px;
 
-      background: linear-gradient(
-        135deg,
-        #b51232,
-        #a50e2c
-      );
+      background: #A6192E;
 
       color: #ffffff;
 
-      font-size: 15px;
+      font-family:
+        "Open Sans",
+        Arial,
+        sans-serif;
+
+      font-size: 14px;
+
       font-weight: 700;
 
       cursor: pointer;
 
       box-shadow:
-        0 7px 16px rgba(181, 18, 50, 0.20);
+        0 6px 15px
+        rgba(166, 25, 46, 0.20);
 
-      transition: all 0.2s ease;
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
     }
+
 
     .submit-btn:hover {
-      background: linear-gradient(
-        135deg,
-        #9f0f2d,
-        #8d0b27
-      );
 
-      transform: translateY(-1px);
+      background: #8f1427;
+
+      transform:
+        translateY(-1px);
 
       box-shadow:
-        0 9px 20px rgba(181, 18, 50, 0.25);
+        0 9px 20px
+        rgba(166, 25, 46, 0.25);
     }
+
 
     .submit-btn:active {
-      transform: translateY(0);
+
+      transform:
+        translateY(0);
     }
+
 
     .submit-btn:disabled {
+
       opacity: 0.65;
+
       cursor: not-allowed;
+
       transform: none;
+
+      box-shadow: none;
     }
 
-    /* Secure text */
 
-    .secure-text {
-      text-align: center;
-      margin-top: 13px;
+    .button-content {
 
-      font-size: 11px;
-      color: #8a929d;
-    }
+      display: inline-flex;
 
-    /* Success message */
-
-    .success-message {
-      display: none;
-      text-align: center;
-
-      padding: 35px 20px;
-    }
-
-    .success-icon {
-      width: 55px;
-      height: 55px;
-
-      display: flex;
       align-items: center;
+
       justify-content: center;
 
-      margin: 0 auto 18px;
+      gap: 8px;
+    }
+
+
+    .button-arrow {
+
+      font-size: 18px;
+
+      line-height: 1;
+    }
+
+
+    /* =========================================================
+       LOADER
+       ========================================================= */
+
+    .loader {
+
+      display: none;
+
+      width: 16px;
+
+      height: 16px;
+
+      border:
+        2px solid
+        rgba(255,255,255,0.40);
+
+      border-top-color:
+        #ffffff;
 
       border-radius: 50%;
 
-      background: #f9e7eb;
-      color: #b51232;
-
-      font-size: 28px;
-      font-weight: bold;
+      animation:
+        spin 0.8s linear infinite;
     }
 
-    .success-message h2 {
-      color: #17233c;
-      font-size: 24px;
-      margin-bottom: 10px;
+
+    @keyframes spin {
+
+      to {
+
+        transform:
+          rotate(360deg);
+      }
     }
 
-    .success-message p {
-      color: #667085;
-      font-size: 14px;
-      line-height: 1.6;
+
+    /* =========================================================
+       SECURITY NOTE
+       ========================================================= */
+
+    .security {
+
+      text-align: center;
+
+      color: #8a95a3;
+
+      font-size: 10.5px;
+
+      line-height: 1.5;
+
+      margin-top: 14px;
     }
 
-    /* Hidden iframe */
 
-    #hiddenFrame {
-      display: none;
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    .footer {
+
+      text-align: center;
+
+      padding:
+        22px 15px 0;
+
+      color: #929aa6;
+
+      font-size: 10px;
+
+      line-height: 1.5;
     }
 
-    /* =========================
+
+    /* =========================================================
        TABLET
-       ========================= */
+       ========================================================= */
 
     @media (max-width: 700px) {
 
       .page {
-        max-width: 600px;
-        padding: 20px 14px 35px;
+
+        padding:
+          30px 15px 45px;
       }
 
-      .header {
-        padding: 25px 20px 23px;
+
+      .container {
+
+        max-width: 600px;
       }
+
+
+      .brand {
+
+        padding:
+          30px 28px 0;
+      }
+
 
       .logo {
-        width: 165px;
-        margin-bottom: 20px;
-      }
 
-      .separator {
+        width: 165px;
+
         margin-bottom: 22px;
       }
 
-      .title {
-        font-size: 25px;
+
+      .intro {
+
+        padding:
+          27px 28px 25px;
       }
+
+
+      .report-title {
+
+        font-size: 26px;
+      }
+
 
       .description {
+
         font-size: 14px;
-        line-height: 1.6;
+
+        line-height: 1.65;
       }
 
-      .form-section {
-        padding: 27px 22px 30px;
-      }
 
-      .form-title {
-        font-size: 21px;
+      .form-area {
+
+        margin:
+          0 25px 30px;
+
+        padding:
+          25px 22px 27px;
       }
     }
 
-    /* =========================
+
+    /* =========================================================
        MOBILE
-       ========================= */
+       ========================================================= */
 
     @media (max-width: 480px) {
 
       body {
+
         background:
           linear-gradient(
-            180deg,
+            145deg,
             #ffffff 0%,
-            #fff7f8 100%
+            #ffffff 70%,
+            #fff8f9 100%
           );
       }
 
+
       .page {
-        width: 100%;
-        padding: 10px 10px 25px;
+
+        padding:
+          15px 10px 35px;
       }
+
 
       .card {
-        border-top-width: 5px;
-        border-radius: 11px;
+
+        border-radius: 12px;
+
+        border-top-width: 4px;
+
+        box-shadow:
+          0 7px 24px
+          rgba(55, 20, 28, 0.08);
       }
 
-      .header {
-        padding: 23px 18px 22px;
+
+      .brand {
+
+        padding:
+          24px 20px 0;
       }
+
 
       .logo {
+
         width: 145px;
-        max-width: 60%;
-        margin-bottom: 18px;
+
+        max-width: 75%;
+
+        margin-bottom: 19px;
       }
 
-      .separator {
+
+      .brand-divider {
+
         height: 2px;
-        margin-bottom: 21px;
       }
 
-      .title {
-        font-size: 22px;
-        line-height: 1.28;
-        margin-bottom: 11px;
+
+      .intro {
+
+        padding:
+          24px 20px 22px;
       }
+
+
+      .report-title {
+
+        font-size: 22px;
+
+        line-height: 1.3;
+
+        letter-spacing: -0.25px;
+
+        margin-bottom: 12px;
+      }
+
 
       .description {
-        font-size: 13px;
-        line-height: 1.6;
+
+        font-size: 12.5px;
+
+        line-height: 1.65;
       }
 
-      .form-section {
-        padding: 24px 17px 25px;
+
+      .form-area {
+
+        margin:
+          0 15px 25px;
+
+        padding:
+          22px 17px 22px;
+
+        border-radius: 9px;
       }
 
-      .form-title {
-        font-size: 20px;
-        margin-bottom: 21px;
+
+      .form-heading {
+
+        font-size: 19px;
+
+        margin-bottom: 5px;
       }
 
-      .form-title::after {
-        width: 52px;
-        height: 3px;
-        margin-top: 10px;
+
+      .form-heading-subtitle {
+
+        font-size: 11.5px;
+
+        margin-bottom: 20px;
       }
+
 
       .field {
-        margin-bottom: 16px;
+
+        margin-bottom: 15px;
       }
 
-      label {
-        font-size: 13px;
+
+      .field label {
+
+        font-size: 11.5px;
+
         margin-bottom: 6px;
       }
 
-      input {
-        height: 48px;
-        font-size: 14px;
-        padding: 0 13px;
+
+      .input {
+
+        height: 46px;
+
+        padding:
+          0 12px;
+
+        font-size: 12.5px;
+
+        border-radius: 6px;
       }
+
+
+      .country-code {
+
+        width: 54px;
+
+        height: 46px;
+
+        font-size: 12px;
+
+        border-radius:
+          6px 0 0 6px;
+      }
+
+
+      .mobile-input {
+
+        border-radius:
+          0 6px 6px 0;
+      }
+
 
       .consent-box {
-        padding: 11px;
-        gap: 9px;
-        margin-bottom: 17px;
+
+        gap: 8px;
+
+        padding:
+          10px 11px;
+
+        margin-bottom: 18px;
       }
 
-      .consent-box input[type="checkbox"] {
-        width: 17px;
-        height: 17px;
-        min-width: 17px;
+
+      .consent-checkbox {
+
+        width: 15px;
+
+        height: 15px;
+
+        flex-basis: 15px;
       }
 
-      .consent-text {
-        font-size: 11px;
-        line-height: 1.45;
+
+      .consent-label {
+
+        font-size: 9.5px;
+
+        line-height: 1.5;
       }
+
 
       .submit-btn {
-        height: 51px;
-        font-size: 14px;
+
+        height: 48px;
+
+        font-size: 13px;
+
+        border-radius: 6px;
       }
 
-      .secure-text {
-        font-size: 10px;
+
+      .security {
+
+        font-size: 9px;
+
+        margin-top: 11px;
+      }
+
+
+      .footer {
+
+        padding-top: 17px;
+
+        font-size: 9px;
       }
     }
+
+
+    /* =========================================================
+       VERY SMALL PHONES
+       ========================================================= */
+
+    @media (max-width: 350px) {
+
+      .page {
+
+        padding-left: 7px;
+
+        padding-right: 7px;
+      }
+
+
+      .brand {
+
+        padding-left: 15px;
+
+        padding-right: 15px;
+      }
+
+
+      .intro {
+
+        padding-left: 15px;
+
+        padding-right: 15px;
+      }
+
+
+      .form-area {
+
+        margin-left: 10px;
+
+        margin-right: 10px;
+
+        padding-left: 13px;
+
+        padding-right: 13px;
+      }
+
+
+      .report-title {
+
+        font-size: 20px;
+      }
+
+
+      .description {
+
+        font-size: 11.5px;
+      }
+    }
+
   </style>
+
 </head>
+
 
 <body>
 
-  <main class="page">
+  <div class="page">
 
-    <div class="card">
+    <div class="container">
 
-      <!-- =========================
-           HEADER
-           ========================= -->
-
-      <section class="header">
-
-        <!--
-          IMPORTANT:
-          Upload your Equifax PNG to:
-
-          assets/equifax-logo.png
-
-          Keep this filename exactly the same.
-        -->
-
-        <img
-          src="equifax-logo.png"
-          alt="Equifax"
-          class="logo"
-        >
-
-        <div class="separator"></div>
-
-        <h1 class="title">
-          Aspirational India -
-          <span id="reportType">Retail Report</span>
-        </h1>
-
-        <p class="description">
-          Ready to underwrite the next 100 million?
-          Get the comprehensive data, risk strategies,
-          and actionable insights from Equifax India
-          to safely scale your retail lending footprint.
-        </p>
-
-      </section>
+      <div class="card">
 
 
-      <!-- =========================
-           FORM
-           ========================= -->
+        <!-- ===================================================
+             LOGO
+             =================================================== -->
 
-      <section class="form-section">
+        <div class="brand">
 
-        <h2 class="form-title">
-          Request the Report
-        </h2>
+          <? if (logoDataUri) { ?>
 
-        <form
-          id="reportForm"
-          method="POST"
-          target="hiddenFrame"
-        >
-
-          <!-- Report type -->
-          <input
-            type="hidden"
-            name="reportType"
-            id="reportTypeInput"
-            value="retail"
-          >
-
-
-          <!-- Name -->
-
-          <div class="field">
-
-            <label for="name">
-              Name <span class="required">*</span>
-            </label>
-
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Enter your name"
-              autocomplete="name"
-              required
+            <img
+              src="<?!= logoDataUri ?>"
+              alt="Equifax"
+              class="logo"
             >
 
-          </div>
+          <? } else { ?>
 
-
-          <!-- Company -->
-
-          <div class="field">
-
-            <label for="company">
-              Company Name <span class="required">*</span>
-            </label>
-
-            <input
-              type="text"
-              id="company"
-              name="company"
-              placeholder="Enter company name"
-              autocomplete="organization"
-              required
+            <div
+              style="
+                color:#A6192E;
+                font-size:42px;
+                font-weight:800;
+                font-style:italic;
+                letter-spacing:-2px;
+                margin-bottom:25px;
+              "
             >
+              EQUIFAX<sup style="font-size:12px;">®</sup>
+            </div>
 
-          </div>
+          <? } ?>
 
+          <div class="brand-divider"></div>
 
-          <!-- Designation -->
-
-          <div class="field">
-
-            <label for="designation">
-              Designation <span class="required">*</span>
-            </label>
-
-            <input
-              type="text"
-              id="designation"
-              name="designation"
-              placeholder="Enter your designation"
-              required
-            >
-
-          </div>
+        </div>
 
 
-          <!-- Email -->
+        <!-- ===================================================
+             REPORT INTRODUCTION
+             =================================================== -->
 
-          <div class="field">
+        <div class="intro">
 
-            <label for="email">
-              Email ID <span class="required">*</span>
-            </label>
+          <h1 class="report-title">
 
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter your email ID"
-              autocomplete="email"
-              required
-            >
+            Aspirational India -
 
-          </div>
+            <span class="highlight">
+              <?= config.formType ?> Report
+            </span>
+
+          </h1>
 
 
-          <!-- Mobile -->
+          <p class="description">
 
-          <div class="field">
+            <?= config.reportDescription ?>
 
-            <label for="mobile">
-              Mobile Number <span class="required">*</span>
-            </label>
-
-            <input
-              type="tel"
-              id="mobile"
-              name="mobile"
-              placeholder="Enter your mobile number"
-              autocomplete="tel"
-              inputmode="numeric"
-              pattern="[0-9]{10}"
-              maxlength="10"
-              required
-            >
-
-          </div>
-
-
-          <!-- Consent -->
-
-          <div class="consent-box">
-
-            <input
-              type="checkbox"
-              id="consent"
-              name="consent"
-              value="Yes"
-              required
-            >
-
-            <label
-              for="consent"
-              class="consent-text"
-            >
-              I give my consent to Equifax and its representatives
-              to contact me regarding this report and relevant
-              products or services.
-            </label>
-
-          </div>
-
-
-          <!-- Submit -->
-
-          <button
-            type="submit"
-            class="submit-btn"
-            id="submitBtn"
-          >
-            Submit
-          </button>
-
-          <div class="secure-text">
-            Your information is secure with Equifax.
-          </div>
-
-        </form>
-
-
-        <!-- Success -->
-
-        <div
-          class="success-message"
-          id="successMessage"
-        >
-
-          <div class="success-icon">
-            ✓
-          </div>
-
-          <h2>
-            Thank You
-          </h2>
-
-          <p>
-            Your request has been submitted successfully.
-            The report will be shared with you shortly.
           </p>
 
         </div>
 
-      </section>
+
+        <!-- ===================================================
+             FORM AREA
+             =================================================== -->
+
+        <div class="form-area">
+
+
+          <h2 class="form-heading">
+            Request the Report
+          </h2>
+
+
+          <p class="form-heading-subtitle">
+            <?= config.closingText ?>
+          </p>
+
+
+          <!-- MESSAGE -->
+
+          <div
+            id="message"
+            class="message"
+          ></div>
+
+
+          <!-- =================================================
+               FORM
+               ================================================= -->
+
+          <form
+            id="reportForm"
+            onsubmit="handleSubmit(event)"
+            novalidate
+          >
+
+
+            <!-- NAME -->
+
+            <div class="field">
+
+              <label for="name">
+
+                Name
+
+                <span class="required">*</span>
+
+              </label>
+
+
+              <input
+                class="input"
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                autocomplete="name"
+                maxlength="100"
+                required
+              >
+
+            </div>
+
+
+            <!-- COMPANY NAME -->
+
+            <div class="field">
+
+              <label for="companyName">
+
+                Company Name
+
+                <span class="required">*</span>
+
+              </label>
+
+
+              <input
+                class="input"
+                type="text"
+                id="companyName"
+                name="companyName"
+                placeholder="Enter company name"
+                autocomplete="organization"
+                maxlength="150"
+                required
+              >
+
+            </div>
+
+
+            <!-- DESIGNATION -->
+
+            <div class="field">
+
+              <label for="designation">
+
+                Designation
+
+                <span class="required">*</span>
+
+              </label>
+
+
+              <input
+                class="input"
+                type="text"
+                id="designation"
+                name="designation"
+                placeholder="Enter your designation"
+                autocomplete="organization-title"
+                maxlength="100"
+                required
+              >
+
+            </div>
+
+
+            <!-- MOBILE -->
+
+            <div class="field">
+
+              <label for="mobile">
+
+                Mobile Number
+
+                <span class="required">*</span>
+
+              </label>
+
+
+              <div class="mobile-wrap">
+
+                <div class="country-code">
+                  +91
+                </div>
+
+
+                <input
+                  class="input mobile-input"
+                  type="tel"
+                  id="mobile"
+                  name="mobile"
+                  placeholder="Enter your mobile number"
+                  maxlength="10"
+                  inputmode="numeric"
+                  autocomplete="tel"
+                  required
+                  oninput="
+                    this.value =
+                    this.value
+                      .replace(/[^0-9]/g,'')
+                      .slice(0,10)
+                  "
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="field">
+
+              <label for="email">
+
+                Email ID
+
+                <span class="required">*</span>
+
+              </label>
+
+
+              <input
+                class="input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email ID"
+                autocomplete="email"
+                maxlength="150"
+                required
+              >
+
+            </div>
+
+
+            <!-- =================================================
+                 CONSENT
+                 ================================================= -->
+
+            <div class="consent-box">
+
+              <input
+                type="checkbox"
+                id="consent"
+                name="consent"
+                class="consent-checkbox"
+                required
+              >
+
+
+              <label
+                for="consent"
+                class="consent-label"
+              >
+
+                I hereby give my consent to the
+                <strong>Equifax team</strong>
+                to contact me regarding this report,
+                relevant products, services, and business
+                opportunities using the contact details
+                provided above.
+
+              </label>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUBMIT
+                 ================================================= -->
+
+            <button
+              type="submit"
+              class="submit-btn"
+              id="submitBtn"
+            >
+
+              <span class="button-content">
+
+                <span
+                  class="loader"
+                  id="loader"
+                ></span>
+
+
+                <span id="buttonText">
+                  Get the Report
+                </span>
+
+
+                <span
+                  class="button-arrow"
+                  id="buttonArrow"
+                >
+                  →
+                </span>
+
+              </span>
+
+            </button>
+
+
+          </form>
+
+
+          <!-- SECURITY -->
+
+          <div class="security">
+
+            Your information is secure with Equifax.
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+      <!-- =====================================================
+           FOOTER
+           ===================================================== -->
+
+      <div class="footer">
+
+        © Equifax. All rights reserved.
+
+      </div>
 
     </div>
 
-  </main>
+  </div>
 
 
-  <!-- Hidden target for form submission -->
-
-  <iframe
-    name="hiddenFrame"
-    id="hiddenFrame"
-  ></iframe>
-
+  <!-- =========================================================
+       JAVASCRIPT
+       ========================================================= -->
 
   <script>
 
-    /* ==========================================
-       APPS SCRIPT BACKEND
-       ========================================== */
 
-    const APPS_SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbzphL91m0zmS--rONu7JrozEfCk6HMFSNf5pv-sUye1LX7v7T8gYq9uNaB2hGqHTnLA8A/exec";
+    /* =========================================================
+       FORM SUBMISSION
+       ========================================================= */
 
+    function handleSubmit(event) {
 
-    /* ==========================================
-       DETECT RETAIL / BUSINESS
-       ========================================== */
-
-    const params =
-      new URLSearchParams(window.location.search);
-
-    const type =
-      params.get("type");
+      event.preventDefault();
 
 
-    const reportType =
-      document.getElementById("reportType");
+      const form =
+        document.getElementById(
+          'reportForm'
+        );
 
-    const reportTypeInput =
-      document.getElementById("reportTypeInput");
+
+      const submitBtn =
+        document.getElementById(
+          'submitBtn'
+        );
 
 
-    if (
-      type === "business" ||
-      type === "commercial" ||
-      type === "metro"
-    ) {
+      const buttonText =
+        document.getElementById(
+          'buttonText'
+        );
 
-      reportType.textContent =
-        "Business Report";
 
-      reportTypeInput.value =
-        "business";
+      const buttonArrow =
+        document.getElementById(
+          'buttonArrow'
+        );
 
-    } else {
 
-      reportType.textContent =
-        "Retail Report";
+      const loader =
+        document.getElementById(
+          'loader'
+        );
 
-      reportTypeInput.value =
-        "retail";
+
+      const message =
+        document.getElementById(
+          'message'
+        );
+
+
+      /* =======================================================
+         GET VALUES
+         ======================================================= */
+
+      const name =
+        document
+          .getElementById('name')
+          .value
+          .trim();
+
+
+      const companyName =
+        document
+          .getElementById('companyName')
+          .value
+          .trim();
+
+
+      const designation =
+        document
+          .getElementById('designation')
+          .value
+          .trim();
+
+
+      const mobile =
+        document
+          .getElementById('mobile')
+          .value
+          .trim();
+
+
+      const email =
+        document
+          .getElementById('email')
+          .value
+          .trim();
+
+
+      const consent =
+        document
+          .getElementById('consent')
+          .checked;
+
+
+      /* =======================================================
+         CLEAR MESSAGE
+         ======================================================= */
+
+      message.className =
+        'message';
+
+      message.textContent =
+        '';
+
+
+      /* =======================================================
+         NAME VALIDATION
+         ======================================================= */
+
+      if (!name) {
+
+        showMessage(
+          'Please enter your name.',
+          'error'
+        );
+
+        document
+          .getElementById('name')
+          .focus();
+
+        return;
+      }
+
+
+      /* =======================================================
+         COMPANY VALIDATION
+         ======================================================= */
+
+      if (!companyName) {
+
+        showMessage(
+          'Please enter your company name.',
+          'error'
+        );
+
+        document
+          .getElementById('companyName')
+          .focus();
+
+        return;
+      }
+
+
+      /* =======================================================
+         DESIGNATION VALIDATION
+         ======================================================= */
+
+      if (!designation) {
+
+        showMessage(
+          'Please enter your designation.',
+          'error'
+        );
+
+        document
+          .getElementById('designation')
+          .focus();
+
+        return;
+      }
+
+
+      /* =======================================================
+         MOBILE VALIDATION
+         ======================================================= */
+
+      if (
+        !/^[6-9][0-9]{9}$/.test(
+          mobile
+        )
+      ) {
+
+        showMessage(
+          'Please enter a valid 10-digit Indian mobile number.',
+          'error'
+        );
+
+        document
+          .getElementById('mobile')
+          .focus();
+
+        return;
+      }
+
+
+      /* =======================================================
+         EMAIL VALIDATION
+         ======================================================= */
+
+      const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+      if (
+        !emailPattern.test(email)
+      ) {
+
+        showMessage(
+          'Please enter a valid email address.',
+          'error'
+        );
+
+        document
+          .getElementById('email')
+          .focus();
+
+        return;
+      }
+
+
+      /* =======================================================
+         CONSENT VALIDATION
+         ======================================================= */
+
+      if (!consent) {
+
+        showMessage(
+          'Please provide your consent to continue.',
+          'error'
+        );
+
+        return;
+      }
+
+
+      /* =======================================================
+         DISABLE BUTTON
+         ======================================================= */
+
+      submitBtn.disabled =
+        true;
+
+
+      loader.style.display =
+        'inline-block';
+
+
+      buttonText.textContent =
+        'Sending...';
+
+
+      buttonArrow.style.display =
+        'none';
+
+
+      /* =======================================================
+         FORM DATA
+         ======================================================= */
+
+      const formData = {
+
+        name:
+          name,
+
+        companyName:
+          companyName,
+
+        designation:
+          designation,
+
+        mobile:
+          mobile,
+
+        email:
+          email,
+
+        consent:
+          consent
+
+      };
+
+
+      /* =======================================================
+         SEND TO CODE.GS
+         ======================================================= */
+
+      google.script.run
+
+        .withSuccessHandler(
+          function(response) {
+
+
+            /* ================================================
+               RE-ENABLE BUTTON
+               ================================================ */
+
+            submitBtn.disabled =
+              false;
+
+
+            loader.style.display =
+              'none';
+
+
+            buttonText.textContent =
+              'Get the Report';
+
+
+            buttonArrow.style.display =
+              'inline';
+
+
+            /* ================================================
+               RESPONSE
+               ================================================ */
+
+            if (
+              response &&
+              response.success
+            ) {
+
+              showMessage(
+                response.message ||
+                'Thank you. Please check your email for the report.',
+                'success'
+              );
+
+
+              /* ==============================================
+                 CLEAR FORM
+                 ============================================== */
+
+              form.reset();
+
+            }
+
+            else {
+
+              showMessage(
+                response &&
+                response.message
+                  ? response.message
+                  : 'Unable to send the report. Please try again.',
+                'error'
+              );
+
+            }
+
+          }
+        )
+
+        .withFailureHandler(
+          function(error) {
+
+
+            /* ================================================
+               RE-ENABLE BUTTON
+               ================================================ */
+
+            submitBtn.disabled =
+              false;
+
+
+            loader.style.display =
+              'none';
+
+
+            buttonText.textContent =
+              'Get the Report';
+
+
+            buttonArrow.style.display =
+              'inline';
+
+
+            /* ================================================
+               USER-FRIENDLY ERROR
+               ================================================ */
+
+            showMessage(
+              'Unable to send the report. Please try again.',
+              'error'
+            );
+
+          }
+        )
+
+        .submitForm(
+          formData,
+          '<?= formType ?>'
+        );
 
     }
 
 
-    /* ==========================================
-       FORM SUBMISSION
-       ========================================== */
+    /* =========================================================
+       SHOW MESSAGE
+       ========================================================= */
 
-    const form =
-      document.getElementById("reportForm");
+    function showMessage(
+      text,
+      type
+    ) {
 
-    const submitBtn =
-      document.getElementById("submitBtn");
-
-    const successMessage =
-      document.getElementById("successMessage");
-
-
-    form.action =
-      APPS_SCRIPT_URL;
+      const message =
+        document.getElementById(
+          'message'
+        );
 
 
-    form.addEventListener(
-      "submit",
-      function () {
+      message.textContent =
+        text;
 
-        submitBtn.disabled = true;
 
-        submitBtn.textContent =
-          "Submitting...";
+      message.className =
+        'message ' +
+        type;
 
-        /*
-          Give Apps Script time to receive
-          the submitted form.
 
-          The page itself does not navigate
-          to Apps Script because the form
-          targets the hidden iframe.
-        */
+      message.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
 
-        setTimeout(function () {
+    }
 
-          form.style.display =
-            "none";
-
-          successMessage.style.display =
-            "block";
-
-        }, 1800);
-
-      }
-    );
 
   </script>
 
 </body>
+
 </html>
