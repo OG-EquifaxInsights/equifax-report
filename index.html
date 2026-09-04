@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  >
+
+  <title>Equifax Report</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(176, 24, 54, 0.08),
+          transparent 32%
+        ),
+        linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #ffffff 65%,
+          #fff7f8 100%
+        );
+
+      color: #17233c;
+      min-height: 100vh;
+    }
+
+    /* Main page container */
+
+    .page {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 35px 20px 50px;
+    }
+
+    /* Main card */
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #ead3d8;
+      border-top: 6px solid #b51232;
+      border-radius: 14px;
+      box-shadow:
+        0 15px 45px rgba(37, 20, 27, 0.10),
+        0 3px 12px rgba(37, 20, 27, 0.05);
+
+      overflow: hidden;
+    }
+
+    /* Header */
+
+    .header {
+      text-align: center;
+      padding: 30px 30px 25px;
+      background:
+        linear-gradient(
+          180deg,
+          #ffffff 0%,
+          #fffafb 100%
+        );
+    }
+
+    .logo {
+      width: 190px;
+      max-width: 70%;
+      height: auto;
+      display: block;
+      margin: 0 auto 23px;
+    }
+
+    .separator {
+      width: 100%;
+      height: 2px;
+      background: #b51232;
+      margin: 0 auto 27px;
+    }
+
+    .title {
+      font-size: 30px;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #17233c;
+      margin-bottom: 14px;
+    }
+
+    .title span {
+      color: #b51232;
+    }
+
+    .description {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #536174;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Form section */
+
+    .form-section {
+      padding: 32px 40px 38px;
+      border-top: 1px solid #f0dfe3;
+    }
+
+    .form-title {
+      font-size: 23px;
+      font-weight: 700;
+      color: #17233c;
+      margin-bottom: 24px;
+    }
+
+    .form-title::after {
+      content: "";
+      display: block;
+      width: 62px;
+      height: 4px;
+      background: #b51232;
+      margin-top: 12px;
+      border-radius: 5px;
+    }
+
+    .field {
+      margin-bottom: 19px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: #273247;
+      margin-bottom: 7px;
+    }
+
+    .required {
+      color: #b51232;
+    }
+
+    input {
+      width: 100%;
+      height: 50px;
+      border: 1px solid #d6dbe1;
+      border-radius: 7px;
+      background: #ffffff;
+      padding: 0 15px;
+      font-size: 14px;
+      color: #17233c;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    input::placeholder {
+      color: #9ca4ae;
+    }
+
+    input:focus {
+      border-color: #b51232;
+      box-shadow: 0 0 0 3px rgba(181, 18, 50, 0.08);
+    }
+
+    /* Consent */
+
+    .consent-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+
+      background: #fff7f8;
+      border: 1px solid #f0d7dc;
+      border-radius: 8px;
+
+      padding: 13px 14px;
+      margin-top: 5px;
+      margin-bottom: 20px;
+    }
+
+    .consent-box input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      margin-top: 1px;
+      accent-color: #b51232;
+      cursor: pointer;
+    }
+
+    .consent-text {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #596273;
+      font-weight: 400;
+      cursor: pointer;
+    }
+
+    /* Submit button */
+
+    .submit-btn {
+      width: 100%;
+      height: 54px;
+
+      border: none;
+      border-radius: 7px;
+
+      background: linear-gradient(
+        135deg,
+        #b51232,
+        #a50e2c
+      );
+
+      color: #ffffff;
+
+      font-size: 15px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 7px 16px rgba(181, 18, 50, 0.20);
+
+      transition: all 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(
+        135deg,
+        #9f0f2d,
+        #8d0b27
+      );
+
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 9px 20px rgba(181, 18, 50, 0.25);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Secure text */
+
+    .secure-text {
+      text-align: center;
+      margin-top: 13px;
+
+      font-size: 11px;
+      color: #8a929d;
+    }
+
+    /* Success message */
+
+    .success-message {
+      display: none;
+      text-align: center;
+
+      padding: 35px 20px;
+    }
+
+    .success-icon {
+      width: 55px;
+      height: 55px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0 auto 18px;
+
+      border-radius: 50%;
+
+      background: #f9e7eb;
+      color: #b51232;
+
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .success-message h2 {
+      color: #17233c;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .success-message p {
+      color: #667085;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Hidden iframe */
+
+    #hiddenFrame {
+      display: none;
+    }
+
+    /* =========================
+       TABLET
+       ========================= */
+
+    @media (max-width: 700px) {
+
+      .page {
+        max-width: 600px;
+        padding: 20px 14px 35px;
+      }
+
+      .header {
+        padding: 25px 20px 23px;
+      }
+
+      .logo {
+        width: 165px;
+        margin-bottom: 20px;
+      }
+
+      .separator {
+        margin-bottom: 22px;
+      }
+
+      .title {
+        font-size: 25px;
+      }
+
+      .description {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .form-section {
+        padding: 27px 22px 30px;
+      }
+
+      .form-title {
+        font-size: 21px;
+      }
+    }
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 480px) {
+
+      body {
+        background:
+          linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #fff7f8 100%
+          );
+      }
+
+      .page {
+        width: 100%;
+        padding: 10px 10px 25px;
+      }
+
+      .card {
+        border-top-width: 5px;
+        border-radius: 11px;
+      }
+
+      .header {
+        padding: 23px 18px 22px;
+      }
+
+      .logo {
+        width: 145px;
+        max-width: 60%;
+        margin-bottom: 18px;
+      }
+
+      .separator {
+        height: 2px;
+        margin-bottom: 21px;
+      }
+
+      .title {
+        font-size: 22px;
+        line-height: 1.28;
+        margin-bottom: 11px;
+      }
+
+      .description {
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .form-section {
+        padding: 24px 17px 25px;
+      }
+
+      .form-title {
+        font-size: 20px;
+        margin-bottom: 21px;
+      }
+
+      .form-title::after {
+        width: 52px;
+        height: 3px;
+        margin-top: 10px;
+      }
+
+      .field {
+        margin-bottom: 16px;
+      }
+
+      label {
+        font-size: 13px;
+        margin-bottom: 6px;
+      }
+
+      input {
+        height: 48px;
+        font-size: 14px;
+        padding: 0 13px;
+      }
+
+      .consent-box {
+        padding: 11px;
+        gap: 9px;
+        margin-bottom: 17px;
+      }
+
+      .consent-box input[type="checkbox"] {
+        width: 17px;
+        height: 17px;
+        min-width: 17px;
+      }
+
+      .consent-text {
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      .submit-btn {
+        height: 51px;
+        font-size: 14px;
+      }
+
+      .secure-text {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <div class="card">
+
+      <!-- =========================
+           HEADER
+           ========================= -->
+
+      <section class="header">
+
+        <!--
+          IMPORTANT:
+          Upload your Equifax PNG to:
+
+          assets/equifax-logo.png
+
+          Keep this filename exactly the same.
+        -->
+
+        <img
+          src="assets/equifax-logo.png"
+          alt="Equifax"
+          class="logo"
+        >
+
+        <div class="separator"></div>
+
+        <h1 class="title">
+          Aspirational India -
+          <span id="reportType">Retail Report</span>
+        </h1>
+
+        <p class="description">
+          Ready to underwrite the next 100 million?
+          Get the comprehensive data, risk strategies,
+          and actionable insights from Equifax India
+          to safely scale your retail lending footprint.
+        </p>
+
+      </section>
+
+
+      <!-- =========================
+           FORM
+           ========================= -->
+
+      <section class="form-section">
+
+        <h2 class="form-title">
+          Request the Report
+        </h2>
+
+        <form
+          id="reportForm"
+          method="POST"
+          target="hiddenFrame"
+        >
+
+          <!-- Report type -->
+          <input
+            type="hidden"
+            name="reportType"
+            id="reportTypeInput"
+            value="retail"
+          >
+
+
+          <!-- Name -->
+
+          <div class="field">
+
+            <label for="name">
+              Name <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              autocomplete="name"
+              required
+            >
+
+          </div>
+
+
+          <!-- Company -->
+
+          <div class="field">
+
+            <label for="company">
+              Company Name <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="company"
+              name="company"
+              placeholder="Enter company name"
+              autocomplete="organization"
+              required
+            >
+
+          </div>
+
+
+          <!-- Designation -->
+
+          <div class="field">
+
+            <label for="designation">
+              Designation <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="designation"
+              name="designation"
+              placeholder="Enter your designation"
+              required
+            >
+
+          </div>
+
+
+          <!-- Email -->
+
+          <div class="field">
+
+            <label for="email">
+              Email ID <span class="required">*</span>
+            </label>
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email ID"
+              autocomplete="email"
+              required
+            >
+
+          </div>
+
+
+          <!-- Mobile -->
+
+          <div class="field">
+
+            <label for="mobile">
+              Mobile Number <span class="required">*</span>
+            </label>
+
+            <input
+              type="tel"
+              id="mobile"
+              name="mobile"
+              placeholder="Enter your mobile number"
+              autocomplete="tel"
+              inputmode="numeric"
+              pattern="[0-9]{10}"
+              maxlength="10"
+              required
+            >
+
+          </div>
+
+
+          <!-- Consent -->
+
+          <div class="consent-box">
+
+            <input
+              type="checkbox"
+              id="consent"
+              name="consent"
+              value="Yes"
+              required
+            >
+
+            <label
+              for="consent"
+              class="consent-text"
+            >
+              I give my consent to Equifax and its representatives
+              to contact me regarding this report and relevant
+              products or services.
+            </label>
+
+          </div>
+
+
+          <!-- Submit -->
+
+          <button
+            type="submit"
+            class="submit-btn"
+            id="submitBtn"
+          >
+            Submit
+          </button>
+
+          <div class="secure-text">
+            Your information is secure with Equifax.
+          </div>
+
+        </form>
+
+
+        <!-- Success -->
+
+        <div
+          class="success-message"
+          id="successMessage"
+        >
+
+          <div class="success-icon">
+            ✓
+          </div>
+
+          <h2>
+            Thank You
+          </h2>
+
+          <p>
+            Your request has been submitted successfully.
+            The report will be shared with you shortly.
+          </p>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- Hidden target for form submission -->
+
+  <iframe
+    name="hiddenFrame"
+    id="hiddenFrame"
+  ></iframe>
+
+
+  <script>
+
+    /* ==========================================
+       APPS SCRIPT BACKEND
+       ========================================== */
+
+    const APPS_SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbzphL91m0zmS--rONu7JrozEfCk6HMFSNf5pv-sUye1LX7v7T8gYq9uNaB2hGqHTnLA8A/exec";
+
+
+    /* ==========================================
+       DETECT RETAIL / BUSINESS
+       ========================================== */
+
+    const params =
+      new URLSearchParams(window.location.search);
+
+    const type =
+      params.get("type");
+
+
+    const reportType =
+      document.getElementById("reportType");
+
+    const reportTypeInput =
+      document.getElementById("reportTypeInput");
+
+
+    if (
+      type === "business" ||
+      type === "commercial" ||
+      type === "metro"
+    ) {
+
+      reportType.textContent =
+        "Business Report";
+
+      reportTypeInput.value =
+        "business";
+
+    } else {
+
+      reportType.textContent =
+        "Retail Report";
+
+      reportTypeInput.value =
+        "retail";
+
+    }
+
+
+    /* ==========================================
+       FORM SUBMISSION
+       ========================================== */
+
+    const form =
+      document.getElementById("reportForm");
+
+    const submitBtn =
+      document.getElementById("submitBtn");
+
+    const successMessage =
+      document.getElementById("successMessage");
+
+
+    form.action =
+      APPS_SCRIPT_URL;
+
+
+    form.addEventListener(
+      "submit",
+      function () {
+
+        submitBtn.disabled = true;
+
+        submitBtn.textContent =
+          "Submitting...";
+
+        /*
+          Give Apps Script time to receive
+          the submitted form.
+
+          The page itself does not navigate
+          to Apps Script because the form
+          targets the hidden iframe.
+        */
+
+        setTimeout(function () {
+
+          form.style.display =
+            "none";
+
+          successMessage.style.display =
+            "block";
+
+        }, 1800);
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
